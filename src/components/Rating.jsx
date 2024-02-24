@@ -20,6 +20,7 @@ const Rating = ({ ratingNumber, ratingDisc }) => {
     }
     return starElements;
   };
+
   return (
     <div className="Rating-container">
       <h2>{ratingNumber}</h2>

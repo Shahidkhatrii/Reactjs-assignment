@@ -21,13 +21,11 @@ const ListCard = ({
   };
   return (
     <div className="card-container">
-      {badge ? (
+      {badge && (
         <div className="card-badge">
           <img src={cup} alt="icon" />
           {badge}
         </div>
-      ) : (
-        <></>
       )}
       <div className="card-number">{index}</div>
       <div className="img-con">
@@ -39,16 +37,14 @@ const ListCard = ({
           {title}
           <span>{description}</span>
         </p>
-        {offer ? <div className="offer-badge">{offer}% Off</div> : <></>}
+        {offer && <div className="offer-badge">{offer}% Off</div>}
         <p className="title">Main Highlights</p>
 
-        {mainHighlights.discription ? (
+        {mainHighlights.discription && (
           <p className="highlight">{mainHighlights.discription}</p>
-        ) : (
-          <></>
         )}
 
-        {mainHighlights.ratings ? (
+        {mainHighlights.ratings && (
           <div className="highlight-ratings">
             {mainHighlights.ratings.map((rating, i) => {
               return (
@@ -59,11 +55,9 @@ const ListCard = ({
               );
             })}
           </div>
-        ) : (
-          <></>
         )}
 
-        {mainHighlights.likeFactors ? (
+        {mainHighlights.likeFactors && (
           <div className="highlight-like">
             <p>Why we love it</p>
             {mainHighlights.likeFactors.map((data, i) => {
@@ -75,8 +69,6 @@ const ListCard = ({
               );
             })}
           </div>
-        ) : (
-          <></>
         )}
 
         {/* Here we can render moreInfo based on toggleMoreInfo's state */}
