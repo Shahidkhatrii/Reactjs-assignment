@@ -1,6 +1,5 @@
 @use "_colors" as color;
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
-
 * {
     padding: 0;
     margin: 0;
@@ -27,9 +26,28 @@ html {
     background-color: black;
     height: 9vh;
     color: color.$fontNav;
-
     @include setFlexSettings(row, center, center, 5rem);
-
+    > .menu-list {
+        > ul {
+            @include setFlexSettings(row, center, center, 5rem);
+            list-style-type: none;
+            > li > a {
+                text-decoration: none;
+                appearance: none;
+                @include setFontSettings(400, 14px, 20px);
+                color: color.$fontNav;
+                &:hover {
+                    opacity: 0.9;
+                }
+            }
+        }
+    }
+    > .nav-menu {
+        display: none;
+    }
+    > .nav-menu-close {
+        display: none;
+    }
     .search-box {
         @include setFlexSettings(row, center, center, 5px);
 
@@ -61,7 +79,7 @@ html {
         margin-bottom: 1rem;
 
         color: color.$primaryFont;
-        @include setFontSettings(400, 3rem, 60px);
+        @include setFontSettings(400, 3rem, 3.75rem);
     }
     hr {
         color: color.$borderSearch;
@@ -85,9 +103,10 @@ html {
         }
     }
     .list-options {
-        @include setFlexSettings(row, flex-start, stretch, 2.5rem);
+        @include setFlexSettings(row, flex-start, stretch, 2rem);
         padding: 0.5rem;
         > a {
+            text-decoration: none;
             color: color.$secondaryFont;
             padding: 0.6rem 1rem;
             border-radius: 12px;
@@ -102,7 +121,7 @@ html {
 .list-container {
     .breadcrumb {
         list-style: none;
-
+        flex-wrap: wrap;
         @include setFlexSettings(row, flex-start, stretch, 0);
         padding: 0.5rem;
         margin-bottom: 2rem;
@@ -115,7 +134,7 @@ html {
             a {
                 text-decoration: none;
                 color: color.$secondaryFont;
-                @include setFontSettings(400, 14px, 20px);
+                @include setFontSettings(400, 0.85rem, 1.2rem);
 
                 &:hover {
                     text-decoration: underline;
@@ -178,8 +197,7 @@ html {
 
             @include setFontSettings(700, 1rem, 1.5rem);
             span {
-                font-weight: 400;
-                line-height: 1.5rem;
+                @include setFontSettings(400, 1rem, 1.5rem);
             }
         }
         .offer-badge {
@@ -195,11 +213,12 @@ html {
 
             @include setFontSettings(400, 1rem, 1.5rem);
         }
+
         a {
             @include setFlexSettings(row, flex-start, center, 0);
             text-decoration: none;
             color: color.$button;
-
+            cursor: pointer;
             @include setFontSettings(400, 1rem, 1.5rem);
         }
         .highlight-ratings {
@@ -290,7 +309,7 @@ html {
 .deals-list-con {
     margin-top: 4rem;
     > h1 {
-        @include setFontSettings(400, 2rem, 44px);
+        @include setFontSettings(400, 2rem, 2.75rem);
     }
     .deals-cards-con {
         @include setFlexSettings(row, center, center, 3rem);
@@ -359,7 +378,7 @@ html {
     padding: 5rem 2rem 4rem 3rem;
     > h1 {
         color: color.$fontSignup;
-        @include setFontSettings(400, 2.2rem, 44px);
+        @include setFontSettings(400, 2.2rem, 2.75rem);
         width: 50%;
     }
     .signup-input-box {
@@ -372,7 +391,7 @@ html {
         }
         .signup-btn {
             @extend .primary-btn;
-            @include setFontSettings(400, 14px, 20px);
+            @include setFontSettings(400, 1rem, 1.2rem);
             padding: 1.2rem;
 
             border-radius: 0 12px 12px 0;
@@ -424,5 +443,173 @@ html {
             margin: 0;
             cursor: pointer;
         }
+    }
+}
+
+// Responsive CSS
+@media (max-width: 1200px) {
+    .main-container {
+        padding: 0 3vw;
+    }
+}
+
+@media (max-width: 900px) {
+    html {
+        font-size: 13px;
+    }
+}
+@media (max-width: 700px) {
+    html {
+        font-size: 12px;
+    }
+}
+@media (max-width: 650px) {
+    html {
+        font-size: 12px;
+    }
+    .nav-container {
+        @include setFlexSettings(row, space-between, center, 0);
+        padding: 0 1rem;
+        > .nav-menu {
+            display: inline;
+            @include setFontSettings(400, 2rem, 2rem);
+        }
+        > .nav-menu-close {
+            display: inline;
+            @include setFontSettings(400, 2rem, 2rem);
+        }
+        > .menu-list {
+            z-index: 100;
+            position: absolute;
+            left: 0;
+            top: 9vh;
+            background-color: color.$nav;
+            width: 0px;
+            height: calc(100vh - 9vh);
+            transition: all 0.3s ease-in;
+            overflow: hidden;
+            ul {
+                display: flex;
+                flex-direction: column;
+                li {
+                    margin-right: unset;
+                    margin-top: 22px;
+                }
+            }
+        }
+        > .active {
+            width: 270px;
+        }
+    }
+    .header-container {
+        h1 {
+            margin-top: 1rem;
+
+            color: color.$primaryFont;
+            @include setFontSettings(400, 2.9rem, 3rem);
+        }
+        .header-flex {
+            @include setFontSettings(400, 0.625rem, 1rem);
+        }
+
+        .list-options {
+            @include setFlexSettings(row, center, center, 0);
+
+            > a {
+                border-radius: 12px;
+                @include setFontSettings(400, 0.7rem, 1rem);
+            }
+        }
+    }
+
+    .card-container {
+        @include setFlexSettings(column, space-evenly, stretch, 1rem);
+
+        .img-con {
+            padding: 1rem;
+            @include setFontSettings(400, 12px, 20px);
+        }
+        .detail-con {
+            padding: 1rem;
+            .title {
+                @include setFontSettings(700, 1rem, 1.5rem);
+                span {
+                    @include setFontSettings(400, 1rem, 1.5rem);
+                }
+            }
+            .offer-badge {
+                @include setFontSettings(400, 12px, 20px);
+            }
+            .highlight-ratings {
+                @include setFontSettings(400, 12px, 1.5rem);
+
+                .rating-list {
+                    margin-bottom: 3px;
+                    @include setFlexSettings(row, flex-start, center, 0.5rem);
+                }
+            }
+            .highlight-like {
+                > p {
+                    margin-bottom: 3px;
+                }
+            }
+        }
+        .review-con {
+            @include setFlexSettings(column, space-between, center, 1rem);
+
+            > .primary-btn {
+                margin-bottom: 3rem;
+                width: 20rem !important;
+            }
+        }
+    }
+    .deals-list-con {
+        > h1 {
+            @include setFontSettings(400, 1.8rem, 2.5rem);
+        }
+        .deals-cards-con {
+            @include setFlexSettings(column, center, center, 3rem);
+            padding: 1rem;
+        }
+    }
+    .signup-container {
+        @include setFlexSettings(column, center, flex-start, 1rem);
+        padding: 4rem 2rem;
+        > h1 {
+            @include setFontSettings(400, 2rem, 2.5rem);
+            width: 100%;
+        }
+        .signup-input-box {
+            align-self: center;
+        }
+    }
+    .footer {
+        @include setFlexSettings(row, space-between, flex-start, 1rem);
+        padding: 10vh 6vw 20vh;
+        .footer-column {
+            ul {
+                li {
+                    margin-bottom: 4px;
+                }
+
+                a {
+                    @include setFontSettings(400, 10px, 15px);
+                }
+            }
+        }
+
+        .footer-country {
+            @include setFontSettings(400, 11px, 15px);
+        }
+    }
+}
+@media (max-width: 300px) {
+    html {
+        font-size: 10px;
+    }
+}
+@media (max-width: 250px) {
+    html {
+        font-size: 6px;
     }
 }

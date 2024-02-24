@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import img from "../assets/images/listImg.png";
 import Button from "./Button";
 import Rating from "./Rating";
@@ -10,13 +10,15 @@ const ListCard = ({
   description,
   imgTitle,
   mainHighlights,
-  moreInfo,
   rating,
   badge,
   offer,
   index,
 }) => {
-  console.log(title);
+  const [toggleMoreInfo, setToggleMoreInfo] = useState(false);
+  const handleToggle = () => {
+    setToggleMoreInfo(!toggleMoreInfo);
+  };
   return (
     <div className="card-container">
       {badge ? (
@@ -77,10 +79,16 @@ const ListCard = ({
           <></>
         )}
 
-        <a href="#">
-          Show more
-          <img src={down} alt="icon" />
-        </a>
+        {/* Here we can render moreInfo based on toggleMoreInfo's state */}
+
+        {!toggleMoreInfo ? (
+          <a onClick={handleToggle}>
+            Show more
+            <img src={down} alt="icon" />
+          </a>
+        ) : (
+          <a onClick={handleToggle}>Show less</a>
+        )}
       </div>
 
       <div className="review-con">

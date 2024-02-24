@@ -24,12 +24,12 @@ const Header = () => {
       <hr />
 
       <div className="list-options">
-        <a>Tools</a>
-        <a>AWS Builder</a>
-        <a>Start Build</a>
-        <a>Build Supplies</a>
-        <a>Tooling</a>
-        <a>BlueHosting</a>
+        <a href="#">Tools</a>
+        <a href="#">AWS Builder</a>
+        <a href="#">Start Build</a>
+        <a href="#">Build Supplies</a>
+        <a href="#">Tooling</a>
+        <a href="#">BlueHosting</a>
       </div>
     </div>
   );
