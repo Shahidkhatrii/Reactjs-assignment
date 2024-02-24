@@ -1,0 +1,428 @@
+@use "_colors" as color;
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html {
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+}
+@mixin setFontSettings($weight: 400, $size: 1rem, $lineHieght: 1.5rem) {
+    font-weight: $weight;
+    font-size: $size;
+    line-height: $lineHieght;
+}
+@mixin setFlexSettings($direction: row, $justify: flex-start, $align-items: stretch, $gap: 0) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align-items;
+    gap: $gap;
+}
+
+.nav-container {
+    background-color: black;
+    height: 9vh;
+    color: color.$fontNav;
+
+    @include setFlexSettings(row, center, center, 5rem);
+
+    .search-box {
+        @include setFlexSettings(row, center, center, 5px);
+
+        padding: 0.5rem 0.3rem;
+        margin-left: 10rem;
+        border-radius: 8px;
+        border: 1px solid color.$borderSearch;
+
+        background-color: color.$white;
+        color: black;
+
+        input {
+            outline-width: 0;
+            border: none;
+            flex: 1;
+            @include setFontSettings(400, 1rem, 1rem);
+        }
+    }
+}
+
+.main-container {
+    background-color: color.$background;
+    padding: 0 18vw;
+}
+
+.header-container {
+    h1 {
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+
+        color: color.$primaryFont;
+        @include setFontSettings(400, 3rem, 60px);
+    }
+    hr {
+        color: color.$borderSearch;
+        height: 1.33px;
+        opacity: 0.5;
+    }
+    .header-flex {
+        color: color.$secondaryFont;
+        padding: 0.6rem 0;
+
+        @include setFlexSettings(row, space-between, center);
+
+        @include setFontSettings(400, 14px, 20px);
+        > div {
+            @extend .header-flex;
+            padding: 0;
+            gap: 1rem;
+        }
+        > a {
+            cursor: pointer;
+        }
+    }
+    .list-options {
+        @include setFlexSettings(row, flex-start, stretch, 2.5rem);
+        padding: 0.5rem;
+        > a {
+            color: color.$secondaryFont;
+            padding: 0.6rem 1rem;
+            border-radius: 12px;
+            background-color: color.$white;
+            cursor: pointer;
+
+            @include setFontSettings(400, 14px, 20px);
+        }
+    }
+}
+
+.list-container {
+    .breadcrumb {
+        list-style: none;
+
+        @include setFlexSettings(row, flex-start, stretch, 0);
+        padding: 0.5rem;
+        margin-bottom: 2rem;
+        li {
+            &:not(:last-child):after {
+                padding: 0.5rem;
+                color: black;
+                content: ">\00a0";
+            }
+            a {
+                text-decoration: none;
+                color: color.$secondaryFont;
+                @include setFontSettings(400, 14px, 20px);
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}
+.card-container {
+    position: relative;
+    background-color: color.$white;
+
+    @include setFlexSettings(row, space-evenly, stretch, 1rem);
+    margin-bottom: 1rem;
+
+    .card-badge {
+        @include setFlexSettings(row, flex-start, center, 0.5rem);
+
+        background-color: color.$badge;
+        position: absolute;
+        top: -1rem;
+        left: -2px;
+        padding: 0.4rem 0.8rem;
+        line-height: 20px;
+        border-radius: 0 10px 10px 0px;
+
+        color: color.$white;
+
+        @include setFontSettings(400, 1rem, 1.5rem);
+    }
+    .card-number {
+        @include setFlexSettings(row, center, center, 0);
+
+        width: 2.5rem;
+        height: 2.5rem;
+
+        text-align: center;
+        position: absolute;
+        top: 3rem;
+        left: -1.2rem;
+        border-radius: 50%;
+
+        border: 1px solid color.$borderSearch;
+    }
+    .img-con {
+        align-self: center;
+        padding: 2rem;
+        text-align: center;
+        @include setFontSettings(400, 14px, 20px);
+
+        > img {
+            width: 10rem;
+            margin-bottom: 1rem;
+        }
+    }
+    .detail-con {
+        padding: 2rem 0rem;
+        .title {
+            margin-bottom: 0.4rem;
+
+            @include setFontSettings(700, 1rem, 1.5rem);
+            span {
+                font-weight: 400;
+                line-height: 1.5rem;
+            }
+        }
+        .offer-badge {
+            display: inline;
+            padding: 0.1rem 0.2rem;
+            color: color.$fontOffer;
+            background-color: color.$offer;
+
+            @include setFontSettings(400, 13px, 20px);
+        }
+        .highlight {
+            margin: 1rem 1.5rem;
+
+            @include setFontSettings(400, 1rem, 1.5rem);
+        }
+        a {
+            @include setFlexSettings(row, flex-start, center, 0);
+            text-decoration: none;
+            color: color.$button;
+
+            @include setFontSettings(400, 1rem, 1.5rem);
+        }
+        .highlight-ratings {
+            background-color: color.$highlightRating;
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            margin-bottom: 0.5rem;
+            @include setFontSettings(400, 15px, 1.5rem);
+
+            .rating-list {
+                margin-bottom: 5px;
+                @include setFlexSettings(row, flex-start, center, 0.5rem);
+
+                color: color.$secondaryFont;
+                p {
+                    padding: 0.1rem;
+                    background-color: color.$white;
+                    border-radius: 4px;
+                    color: color.$button;
+                }
+            }
+        }
+        .highlight-like {
+            padding: 0.5rem 1rem;
+            p {
+                @include setFlexSettings(row, flex-start, center, 5px);
+
+                img {
+                    @extend p;
+                    width: 1.5rem;
+                    background-color: color.$tickBackground;
+                    padding: 0.4rem;
+                    border-radius: 50%;
+                }
+            }
+            > p {
+                margin-bottom: 5px;
+            }
+        }
+    }
+    .review-con {
+        @include setFlexSettings(column, space-between, center, 0);
+
+        > .primary-btn {
+            margin-bottom: 2rem;
+        }
+    }
+}
+
+.primary-btn {
+    background-color: color.$button;
+    color: color.$white;
+    padding: 0.6rem 0;
+    border: none;
+    border-radius: 12px;
+    text-align: center;
+
+    @include setFontSettings(400, 1rem, 1.5rem);
+    cursor: pointer;
+    &:active {
+        opacity: 0.9;
+    }
+}
+
+.Rating-container {
+    text-align: center;
+    padding: 0.5rem 1rem;
+    background-color: color.$rating;
+    border-radius: 0px 0px 12px 12px;
+    color: color.$fontRating;
+    h2 {
+        @include setFontSettings(400, 2rem, 3rem);
+    }
+    p {
+        @include setFontSettings(400, 14px, 20px);
+    }
+    .rating {
+        @include setFlexSettings(row, flex-start, stretch, 0);
+        padding: 1rem;
+        i {
+            background-color: color.$rating;
+            margin-right: 2px; // Adjust margin as need
+            color: color.$star-color;
+        }
+    }
+}
+
+.deals-list-con {
+    margin-top: 4rem;
+    > h1 {
+        @include setFontSettings(400, 2rem, 44px);
+    }
+    .deals-cards-con {
+        @include setFlexSettings(row, center, center, 3rem);
+        padding: 2rem;
+    }
+}
+
+.deals-card {
+    .img-con {
+        text-align: center;
+        padding: 3.5rem 2rem;
+        img {
+            width: 10rem;
+        }
+    }
+    .card-details {
+        > h1 {
+            @include setFontSettings(700, 1rem, 1.5rem);
+
+            text-align: center;
+            margin: 0.5rem;
+        }
+        > p {
+            @include setFlexSettings(400, 1rem, 1.5rem);
+        }
+        .price {
+            padding: 0.6rem 0;
+            @include setFlexSettings(row, flex-start, center, 0.6rem);
+
+            > h1 {
+                color: color.$price;
+                @include setFontSettings(400, 20px, 28px);
+            }
+            .mrp {
+                color: color.$mrp;
+                @include setFontSettings(400, 14px, 20px);
+
+                margin-top: 0.5rem;
+            }
+            .discount {
+                color: color.$fontDanger;
+                @include setFontSettings(400, 13px, 20px);
+
+                margin-top: 0.6rem;
+            }
+        }
+
+        .limited-offer {
+            @include setFlexSettings(row, flex-start, center, 0.3rem);
+            @include setFontSettings(400, 13px, 20px);
+            color: color.$fontOffer;
+            > span {
+                background-color: color.$offer;
+                padding: 5px;
+                border-radius: 4px;
+            }
+        }
+        Button {
+            @include setFontSettings(400, 1.1rem, 2rem);
+        }
+    }
+}
+.signup-container {
+    @include setFlexSettings(row, space-between, center, 0);
+    background-color: color.$background;
+    padding: 5rem 2rem 4rem 3rem;
+    > h1 {
+        color: color.$fontSignup;
+        @include setFontSettings(400, 2.2rem, 44px);
+        width: 50%;
+    }
+    .signup-input-box {
+        input {
+            padding: 1rem;
+            outline-width: 0;
+            border: none;
+            flex: 1;
+            @include setFontSettings(400, 1.1rem, 1rem);
+        }
+        .signup-btn {
+            @extend .primary-btn;
+            @include setFontSettings(400, 14px, 20px);
+            padding: 1.2rem;
+
+            border-radius: 0 12px 12px 0;
+            background-color: color.$button;
+        }
+    }
+}
+
+// footer
+
+.footer {
+    @include setFlexSettings(row, space-between, stretch, 0);
+    background-color: color.$nav;
+    color: color.$white;
+    padding: 5rem 20rem 10rem 20rem;
+    padding: 10vh 18vw 15vh;
+    .footer-column {
+        flex: 1;
+
+        h3 {
+            @include setFontSettings(400, 1rem, 1.5rem);
+            margin-bottom: 0.3rem;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+
+            li {
+                margin-bottom: 5px;
+            }
+
+            a {
+                @include setFontSettings(400, 13px, 20px);
+                color: color.$fontFooter;
+                text-decoration: none;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    .footer-country {
+        @include setFontSettings(400, 13px, 20px);
+        flex: 1;
+        margin-top: 2rem;
+        p {
+            margin: 0;
+            cursor: pointer;
+        }
+    }
+}
